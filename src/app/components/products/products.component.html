@@ -32,7 +32,7 @@
                             </thead>
                             <tbody>
                                 <ng-container *ngFor="let item of product_list;">
-                                    <tr *ngIf="(item.p_type.typeName == 'Coffee') && SeachMatch(item)" 
+                                    <tr *ngIf="(item.p_type.typeName == type.typeName) && SeachMatch(item)" 
                                     routerLink="/products/goods/{{item.p_id}}">
                                             <td>{{item.p_name}}</td>
                                             <td>{{item.isHot}}</td>

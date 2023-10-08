@@ -35,6 +35,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProductType() {
+    console.log(this.productTypeService.getAllProductType());
     return this.productTypeService.getAllProductType();
   }
 
@@ -46,7 +47,7 @@ export class ProductsComponent implements OnInit {
   SeachMatch(item: any): Boolean {
     if (this.searchText === '' || 
       item.p_name.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      item.p_type.toLowerCase().includes(this.searchText.toLowerCase())) {
+      item.p_type.typeName.toLowerCase().includes(this.searchText.toLowerCase())) {
         return true
     } else return false;
   }
