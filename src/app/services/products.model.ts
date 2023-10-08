@@ -1,9 +1,9 @@
 interface Products {
     p_id: number,
     p_name: string,
-    isHot: string,
-    isCold: string,
-    isFrappe: string,
+    isHot: boolean,
+    isCold: boolean,
+    isFrappe: boolean,
     p_typeId: number,
     p_type: ProductType
 }

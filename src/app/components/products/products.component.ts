@@ -57,4 +57,10 @@ export class ProductsComponent implements OnInit {
       return true;
     } else return false;
   }
+
+  isCheck(bool: boolean): string {
+    if(bool) {
+      return "&#x2713;"
+    } else return "&#x2715;"
+  }
 }

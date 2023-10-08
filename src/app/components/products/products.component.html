@@ -35,9 +35,9 @@
                                     <tr *ngIf="(item.p_type.typeName == type.typeName) && SeachMatch(item)" 
                                     routerLink="/products/goods/{{item.p_id}}">
                                             <td>{{item.p_name}}</td>
-                                            <td>{{item.isHot}}</td>
-                                            <td>{{item.isCold}}</td>
-                                            <td>{{item.isFrappe}}</td>
+                                            <td><p [innerHTML]="isCheck(item.isHot)"></p></td>
+                                            <td><p [innerHTML]="isCheck(item.isCold)"></p></td>
+                                            <td><p [innerHTML]="isCheck(item.isFrappe)"></p></td>
                                     </tr>
                                 </ng-container>
                             </tbody>
