@@ -4,7 +4,13 @@ interface Products {
     isHot: string,
     isCold: string,
     isFrappe: string,
-    p_type: string
+    p_typeId: number,
+    p_type: ProductType
+}
+
+interface ProductType {
+    typeId: number,
+    typeName: string
 }
 
 export type CafeProducts = Products[];

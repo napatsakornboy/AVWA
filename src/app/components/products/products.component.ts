@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CafeProducts } from 'src/app/services/products.model';
 import { ProductsService } from 'src/app/services/products.service';
+import { ProductTypeService } from 'src/app/services/product-type.service';
 
 @Component({
   selector: 'app-products',
@@ -15,7 +16,7 @@ export class ProductsComponent implements OnInit {
   searchText: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute, private productsService:ProductsService,
-    private activatedRoute: ActivatedRoute)
+    private activatedRoute: ActivatedRoute, private productTypeService: ProductTypeService)
     {
 
   }
@@ -33,6 +34,10 @@ export class ProductsComponent implements OnInit {
     return this.productsService.getAllProduct()
   }
 
+  getAllProductType() {
+    return this.productTypeService.getAllProductType();
+  }
+
   onSearchTextEntered(seachValue: string) {
     this.searchText = seachValue;
     console.log(this.searchText);
@@ -47,7 +52,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ShowSeach(productType: string): Boolean {
-    if ( this.product_list.find(x => x.p_type == productType && this.SeachMatch(x)) ) {
+    if ( this.product_list.find(x => x.p_type.typeName == productType && this.SeachMatch(x)) ) {
       return true;
     } else return false;
   }
