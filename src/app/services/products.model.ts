@@ -5,7 +5,8 @@ interface Products {
     isCold: boolean,
     isFrappe: boolean,
     p_typeId: number,
-    p_type: ProductType
+    p_type: ProductType,
+    p_img: string
 }
 
 interface ProductType {

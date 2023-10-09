@@ -17,5 +17,12 @@ export class GoodsComponent implements OnInit {
   ngOnInit(): void {
     this.goodsId = this.activatedRoute.snapshot.paramMap.get('id');
     this.goods = this.productService.getAllProduct().find(x => x.p_id == this.goodsId);
+    console.log(this.goods);
+  }
+
+  isCheck(bool: boolean): string {
+    if(bool) {
+      return "&#x2713;"
+    } else return "&#x2715;"
   }
 }
