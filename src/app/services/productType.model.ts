@@ -1,5 +1,4 @@
 interface ProductType {
-    typeId: number,
     typeName: string
 }
 

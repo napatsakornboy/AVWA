@@ -7,8 +7,8 @@ import { CafeProductType } from './productType.model';
 export class ProductTypeService {
 
   productType: CafeProductType = [
-    { typeId: 1, typeName: 'Coffee' },
-    { typeId: 2, typeName: 'Tea' },
+    { typeName: 'Coffee' },
+    { typeName: 'Tea' },
   ]
 
   constructor() { }

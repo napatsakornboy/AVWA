@@ -16,11 +16,11 @@
 
     <div class="center" style="margin-top:30px">
 
-        <ng-container *ngFor="let type of getAllProductType()">
-            <div class="col-12" *ngIf='ShowSeach(type.typeName)'>
+        <ng-container *ngFor="let type of productTypes">
+            <div class="col-12" *ngIf='ShowSeach(type.ProductType_Name)'>
                 <div>
                     <div class="card-body">
-                        <h2>{{type.typeName.toUpperCase()}}</h2>
+                        <h2>{{type.ProductType_Name.toUpperCase()}}</h2>
                         <table class="table table-striped table-inverse">
                             <thead class="thead-inverse">
                                 <tr>
@@ -31,13 +31,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ng-container *ngFor="let item of product_list;">
-                                    <tr *ngIf="(item.p_type.typeName == type.typeName) && SeachMatch(item)" 
-                                    routerLink="/products/goods/{{item.p_id}}">
-                                            <td>{{item.p_name}}</td>
-                                            <td><p [innerHTML]="isCheck(item.isHot)"></p></td>
-                                            <td><p [innerHTML]="isCheck(item.isCold)"></p></td>
-                                            <td><p [innerHTML]="isCheck(item.isFrappe)"></p></td>
+                                <ng-container *ngFor="let item of List_products;">
+                                    <tr *ngIf="(item.Product_Type == type.ProductType_Name) && SeachMatch(item)" 
+                                    routerLink="/products/goods/{{item._id}}">
+                                            <td>{{item.Product_Name}}</td>
+                                            <td><p [innerHTML]="isCheck(item.Product_IsHot)"></p></td>
+                                            <td><p [innerHTML]="isCheck(item.Product_IsCold)"></p></td>
+                                            <td><p [innerHTML]="isCheck(item.Product_IsFrappe)"></p></td>
                                     </tr>
                                 </ng-container>
                             </tbody>
