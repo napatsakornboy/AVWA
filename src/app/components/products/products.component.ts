@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CafeProducts } from 'src/app/services/products.model';
 import { ProductsService } from 'src/app/services/products.service';
 import { ProductTypeService } from 'src/app/services/product-type.service';
 import { HttpClient } from '@angular/common/http';
-import { CafeProductType } from 'src/app/services/productType.model';
 
 @Component({
   selector: 'app-products',
@@ -19,19 +17,16 @@ export class ProductsComponent implements OnInit {
 
   productTypes!: any
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
+  constructor (
+    
     private productsService:ProductsService,
-    private activatedRoute: ActivatedRoute, 
     private productTypeService: ProductTypeService,
-    private http: HttpClient,
-    ) {
-
-  }
+    )
+    {
+      this.getAllProducts();
+      this.getAllProductTypes();
+    }
   ngOnInit(): void {
-    this.getAllProductTypes()
-    this.getAllProducts()
   }
 
   onSearchTextEntered(seachValue: string) {
@@ -59,19 +54,48 @@ export class ProductsComponent implements OnInit {
     } else return "&#x2715;"
   }
 
-  getAllProductTypes() {
-    this.http.get<any>('http://localhost:3000/productTypes').subscribe(
-      response => {
-        this.productTypes = response;
-        console.log(this.productTypes);
-      })
+  // rest from service
+  getAllProducts() {
+    try{
+      this.productsService.restAllProducts().subscribe(
+        data => {
+          this.List_products = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch(err) {
+      console.log(err);
+    }
   }
 
-  getAllProducts() {
-    this.http.get<any>('http://localhost:3000/products').subscribe(
-      response => {
-        this.List_products = response;
-        console.log(this.List_products);
-      })
+  getAllProductTypes() {
+    try{
+      this.productTypeService.restAllProductTypes().subscribe(
+        data => {
+          this.productTypes = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } catch(err) {
+      console.log(err);
+    }
   }
+
+  // // rest from service
+  // getAllDummy() {
+  //   this.productsService.restAllProducts().subscribe({
+  //     next: (response) => {
+  //       this.List_products = response
+  //       console.log("dummy");
+  //       console.log(this.List_products);
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     }
+  //   });
+  // }
 }

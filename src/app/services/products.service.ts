@@ -1,26 +1,59 @@
 import { Injectable } from '@angular/core';
-import { CafeProducts } from './products.model';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  product_list: CafeProducts = [
-    { p_id: 1, p_name: 'Espresso', isHot: true, isCold: true, isFrappe: false, p_typeId: 1, p_type: { typeId: 1, typeName: 'Coffee' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 2, p_name: 'Tea', isHot: true, isCold: true, isFrappe: true, p_typeId: 2, p_type: { typeId: 2, typeName: 'Tea' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 3, p_name: 'Cappuccino', isHot: true, isCold: true, isFrappe: false, p_typeId: 1, p_type: { typeId: 1, typeName: 'Coffee' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 4, p_name: 'Green Tea',isHot: true, isCold: true, isFrappe: true, p_typeId: 2, p_type: { typeId: 2, typeName: 'Tea' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 5, p_name: 'ชาตึง', isHot: true, isCold: true, isFrappe: false, p_typeId: 2, p_type: { typeId: 2, typeName: 'Tea' }, p_img: "https://img.pic.in.th/morty.png" },
-    { p_id: 6, p_name: 'ขาชูชู', isHot: true, isCold: true, isFrappe: true, p_typeId: 2, p_type: { typeId: 2, typeName: 'Tea' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 7, p_name: 'ชามั้ง', isHot: false, isCold: true, isFrappe: true, p_typeId: 2, p_type: { typeId: 2, typeName: 'Tea' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 8, p_name: 'แกฟะ', isHot: true, isCold: false, isFrappe: false, p_typeId: 1, p_type: { typeId: 1, typeName: 'Coffee' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-    { p_id: 9, p_name: 'ชานี้ต้องปั่น', isHot: false, isCold: false, isFrappe: true, p_typeId: 2, p_type: { typeId: 2, typeName: 'Tea' }, p_img: "https://www.cafe-amazon.com/BackEnd/TempProducts/5e4ec4baf5004217bce8e054231234fc.png" },
-  ]
+  products: any
+  product: any
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) {}
 
-  getAllProduct() {
-    return this.product_list;
+  restAllProducts() {
+    return this.http.get<any>('http://localhost:3000/products/get')
+      .pipe(map(data => {
+        if(data) {
+          this.products = data;
+        }
+        return this.products;
+      }));
   }
+
+  restOneProduct(product_id: any) {
+    return this.http.get<any>(`http://localhost:3000/products/get/${product_id}`)
+      .pipe(map(data => {
+        if(data) {
+          this.product = data;
+        }
+        return this.product;
+      }));
+  }
+
+  createProduct(productData:any){
+    return this.http.post<any>('http://localhost:3000/products/create', productData)
+      .pipe(map(data => {
+        return data;
+      }));
+  }
+
+  updateProduct(product_id: any, productData: any) {
+    return this.http.put<any>(`http://localhost:3000/products/patch/${product_id}`, productData)
+      .pipe(map(data => {
+        return data;
+      }));
+  }
+
+  deleteProduct(product_id: any) {
+    return this.http.delete<any>(`http://localhost:3000/products/delete/${product_id}`)
+      .pipe(map(data => {
+        return data;
+      }));
+  }
+
 }

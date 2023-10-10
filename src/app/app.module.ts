@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
 import { GoodsComponent } from './components/goods/goods.component';
 import { SearchComponent } from './components/search/search.component';
+import { ShowproducttypeComponent } from './components/showproducttype/showproducttype.component';
+import { ProducttypeDetailComponent } from './components/producttype-detail/producttype-detail.component';
+import { CreateproducttypeComponent } from './components/createproducttype/createproducttype.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +23,17 @@ import { SearchComponent } from './components/search/search.component';
     MenuComponent,
     HomeComponent,
     GoodsComponent,
-    SearchComponent
+    SearchComponent,
+    ShowproducttypeComponent,
+    ProducttypeDetailComponent,
+    CreateproducttypeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
