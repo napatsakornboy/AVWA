@@ -15,6 +15,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ShowproducttypeComponent } from './components/showproducttype/showproducttype.component';
 import { ProducttypeDetailComponent } from './components/producttype-detail/producttype-detail.component';
 import { CreateproducttypeComponent } from './components/createproducttype/createproducttype.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CreateproducttypeComponent } from './components/createproducttype/creat
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

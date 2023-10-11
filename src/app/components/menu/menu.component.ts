@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu',
@@ -11,9 +12,11 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons';
 export class MenuComponent implements OnInit {
   faHouse = faHouse;
   faCartShopping = faCartShopping;
+  faBars = faBars;
 
-
+  public isMenuOpen: Boolean = false;
+  
   ngOnInit(): void {
-      
   }
+
 }
